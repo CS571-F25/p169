@@ -5,5 +5,13 @@ export default defineConfig({
   base: '/p169/',
   build: {
     outDir: 'docs'
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['color-functions', 'global-builtin', 'import']
+      }
+    }
   }
 })
