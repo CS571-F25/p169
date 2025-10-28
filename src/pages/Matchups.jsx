@@ -1,4 +1,4 @@
-import PaletteExample from "./PaletteExample";
+import PaletteExample from "../components/PaletteExample";
 
 export default function Matchups(props) {
     return(
