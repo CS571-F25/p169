@@ -1,13 +1,15 @@
-import Matchups from '../components/matchups'
-import Players from '../components/players'
-import Members from '../components/Members'
+import Matchups from '../pages/matchups'
+import Players from '../pages/Players'
+import Members from '../pages/Members'
 import Layout from './layout'
 import { HashRouter, Routes, Route } from 'react-router'
+import InitialModal from '../components/InitialModal'
 
 function App() {
 
   return (
       <HashRouter>
+         { sessionStorage.getItem('leagueId') != null ? '' : <InitialModal /> }
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route index element={<Members/>}></Route>

@@ -104,3 +104,13 @@ $theme-colors: (
 
 /* Import Bootstrap after variables so the overrides apply */
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+/* Modal and backdrop styles */
+body.modal-open > *:not(.modal):not(.modal-backdrop) {
+    filter: blur(5px);
+}
+
+.modal-backdrop {
+    opacity: 0.5 !important;
+    background-color: rgba(0, 0, 0, 0.5);
+}
