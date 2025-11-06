@@ -7,8 +7,8 @@ export default function InitialModal(props) {
     const [show, setShow] = useState(true);
 
     const handleSubmit = () => {
-        console.log(`Submitting the following id: ${leagueId}`)
         sessionStorage.setItem('leagueId', leagueId);
+        window.dispatchEvent(new Event('leagueIdUpdated'));
         handleClose();
     }
 
@@ -26,7 +26,6 @@ export default function InitialModal(props) {
                     <Button onClick={handleSubmit} className="mt-2">Submit</Button>
                 </Form>
             </Modal.Body>
-
         </Modal>
     )
 }
