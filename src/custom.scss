@@ -1,44 +1,44 @@
-$custom-primary: #6705B0;
-$custom-secondary: #8A07EC;
-$custom-accent: #48052A;
+$custom-primary: #302f4d; /* Space cadet (primary) */
+$custom-secondary: #b98ea7; /* Puce (secondary) */
+$custom-accent: #120d31; /* Russian violet (dark/accent) */
 
 /* CSS variables (useful when including compiled Bootstrap CSS) */
 :root {
-	--bs-primary: #6705B0;
-	--bs-primary-50: #efe7fb;
-	--bs-primary-100: #ddbff7;
-	--bs-primary-200: #c695f3;
-	--bs-primary-300: #ae6af0;
-	--bs-primary-400: #9441ec;
-	--bs-primary-500: #6705B0;
-	--bs-primary-600: #56049a;
-	--bs-primary-700: #45037d;
-	--bs-primary-800: #33025f;
-	--bs-primary-900: #210141;
+  --bs-primary: #302f4d; /* Space cadet */
+  --bs-primary-50: #d0cfe2; /* light (900) */
+  --bs-primary-100: #a09fc4; /* 800 */
+  --bs-primary-200: #716fa7; /* 700 */
+  --bs-primary-300: #4e4c7c; /* 600 */
+  --bs-primary-400: #302f4d; /* 500/DEFAULT */
+  --bs-primary-500: #302f4d;
+  --bs-primary-600: #26253d; /* 400 */
+  --bs-primary-700: #1c1c2e; /* 300 */
+  --bs-primary-800: #13131e; /* 200 */
+  --bs-primary-900: #09090f; /* 100 (darkest) */
 
-	--bs-secondary: #8A07EC;
-	--bs-secondary-50: #f3eefe;
-	--bs-secondary-100: #e7ddfd;
-	--bs-secondary-200: #d1bbfa;
-	--bs-secondary-300: #b799f6;
-	--bs-secondary-400: #9f77f3;
-	--bs-secondary-500: #8A07EC;
-	--bs-secondary-600: #7606d2;
-	--bs-secondary-700: #5c049f;
-	--bs-secondary-800: #42036d;
-	--bs-secondary-900: #29023a;
+  --bs-secondary: #b98ea7; /* Puce */
+  --bs-secondary-50: #f1e8ed; /* light */
+  --bs-secondary-100: #e3d2dc;
+  --bs-secondary-200: #d5bbca;
+  --bs-secondary-300: #c6a5b8;
+  --bs-secondary-400: #b98ea7;
+  --bs-secondary-500: #b98ea7;
+  --bs-secondary-600: #9f6687;
+  --bs-secondary-700: #784b66;
+  --bs-secondary-800: #503244;
+  --bs-secondary-900: #281922;
 
-	--bs-dark: #48052A;
-	--bs-dark-50: #f3e9ee;
-	--bs-dark-100: #e8cfd9;
-	--bs-dark-200: #d39eb4;
-	--bs-dark-300: #bc6f92;
-	--bs-dark-400: #974c73;
-	--bs-dark-500: #48052A;
-	--bs-dark-600: #3e041f;
-	--bs-dark-700: #330315;
-	--bs-dark-800: #26020b;
-	--bs-dark-900: #160103;
+  --bs-dark: #120d31; /* Russian violet */
+  --bs-dark-50: #bfb8ec; /* light */
+  --bs-dark-100: #7f71d9;
+  --bs-dark-200: #4533be;
+  --bs-dark-300: #2b2077;
+  --bs-dark-400: #120d31;
+  --bs-dark-500: #120d31;
+  --bs-dark-600: #0e0a27;
+  --bs-dark-700: #0b081d;
+  --bs-dark-800: #070513;
+  --bs-dark-900: #04030a;
 }
 
 /* SCSS variables for Bootstrap / custom components */
@@ -47,17 +47,19 @@ $secondary: $custom-secondary;
 $dark: $custom-accent;
 
 /* Functional variants (tints/shades) */
-$primary-100: #efe7fb;
-$primary-200: #c695f3;
-$primary-600: #56049a;
+$primary-50: #d0cfe2; /* light */
+$primary-100: #a09fc4;
+$primary-200: #716fa7;
+$primary-300: #4e4c7c;
+$primary-600: #26253d;
 
-$secondary-100: #f3eefe;
-$secondary-200: #d1bbfa;
-$secondary-600: #7606d2;
+$secondary-100: #e3d2dc;
+$secondary-200: #d5bbca;
+$secondary-600: #9f6687;
 
-$dark-100: #f3e9ee;
-$dark-200: #d39eb4;
-$dark-600: #3e041f;
+$dark-100: #7f71d9;
+$dark-200: #4533be;
+$dark-600: #0e0a27;
 
 /* Theme colors map override for Bootstrap SCSS builds */
 $theme-colors: (
@@ -73,7 +75,7 @@ $theme-colors: (
 
 /* Optional: small utility tweaks so compiled utilities pick up the colors (kept minimal) */
 %btn-custom-focus {
-	box-shadow: 0 0 0 .2rem rgba(103,5,176, .25);
+  box-shadow: 0 0 0 .2rem rgba($primary, .25);
 }
 
 /* Navbar text tweaks
@@ -100,6 +102,73 @@ $theme-colors: (
 .navbar .nav-link:hover,
 .navbar .navbar-brand:hover {
 	color: #ffffff;
+}
+
+/* Card Component Customization */
+.card {
+  border-radius: 0.5rem;
+  border: 1px solid rgba($primary, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  .card-header {
+    background-color: rgba($primary-100, 0.5);
+    border-bottom: 1px solid rgba($primary, 0.1);
+    padding: 1rem;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  .card-footer {
+    background-color: rgba($primary-100, 0.3);
+    border-top: 1px solid rgba($primary, 0.1);
+  }
+
+  /* Themed variants */
+  &.bg-primary {
+    background-color: $primary !important;
+    color: white;
+    .card-header, .card-footer {
+      background-color: rgba(black, 0.1);
+      border-color: rgba(white, 0.2);
+    }
+  }
+
+  &.bg-secondary {
+    background-color: $secondary !important;
+    color: white;
+    .card-header, .card-footer {
+      background-color: rgba(black, 0.1);
+      border-color: rgba(white, 0.2);
+    }
+  }
+
+  &.bg-dark {
+    background-color: $dark !important;
+    color: white;
+    .card-header, .card-footer {
+      background-color: rgba(black, 0.1);
+      border-color: rgba(white, 0.2);
+    }
+  }
+
+  /* Hover effect */
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba($primary, 0.1);
+  }
+}
+
+/* Card link styles */
+a.card {
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 /* Import Bootstrap after variables so the overrides apply */
