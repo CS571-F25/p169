@@ -171,13 +171,176 @@ a.card {
   }
 }
 
-/* Import Bootstrap after variables so the overrides apply */
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+/* Form component theme overrides for react-bootstrap Form subcomponents
+   - Form.Label -> .form-label
+   - Form.Select -> .form-select
+   - Form.Range  -> .form-range / input[type=range]
+   These live after the Bootstrap import so they override defaults. */
+
+.form {
+  background-color: $dark;
+
+  &.bg-dark {
+    background-color: $dark !important;
+    color: white;
+    .card-header, .card-footer {
+      background-color: rgba(black, 0.1);
+      border-color: rgba(white, 0.2);
+    }
+  }
+}
+
+.form-label {
+  color: $primary;
+  font-weight: 600;
+}
+
+/* Selects / form controls */
+.form-select,
+select.form-select {
+  border: 1px solid $primary-300;
+  border-radius: .375rem;
+  color: $dark;
+  background-color: #fff;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, transform .08s ease;
+
+  &:focus {
+    border-color: $primary;
+    outline: none;
+    box-shadow: 0 0 0 .25rem rgba($primary, .12);
+    transform: translateY(-1px);
+  }
+
+  /* slightly stronger hover affordance */
+  &:hover {
+    border-color: $primary-200;
+  }
+}
+
+/* Range inputs (Form.Range) */
+.form-range,
+input[type="range"].form-range {
+  accent-color: $primary; /* modern browsers */
+  height: 1.5rem;
+}
+
+/* Webkit thumb/track */
+input[type="range"].form-range::-webkit-slider-runnable-track {
+  height: 6px;
+  background: $primary-50;
+  border-radius: 6px;
+}
+
+input[type="range"].form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: $secondary;
+  margin-top: -6px; /* center the thumb */
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  border: 2px solid rgba($primary, .12);
+}
+
+/* Firefox */
+input[type="range"].form-range::-moz-range-track {
+  height: 6px;
+  background: $primary-50;
+  border-radius: 6px;
+}
+
+input[type="range"].form-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: $primary;
+  border: 2px solid rgba($primary, .12);
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+/* Focus state for range to match other controls */
+input[type="range"].form-range:focus {
+  outline: none;
+  box-shadow: 0 0 0 .25rem rgba($primary, .12);
+}
+
+/* Themed container you can apply to a Form: rounded, dark background, margins */
+.themed-form {
+  background-color: $dark; /* use project dark (Russian violet) */
+  color: #fff;
+  border-radius: .75rem;
+  margin: 0.5rem 1rem 1rem; /* top, sides, no bottom margin by default */
+  padding: 1.25rem;
+  width: calc(100% - 3rem);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.04);
+
+  /* Improve spacing for form groups inside */
+  .mb-3, .form-group {
+    margin-bottom: 1rem;
+  }
+
+  /* Labels & helper text */
+  .form-label {
+    color: rgba(255,255,255,0.95);
+  }
+  .form-text {
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* Inputs and selects: transparent background to show the container, with subtle borders */
+  .form-control,
+  .form-select {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: .5rem;
+    padding: .5rem .75rem;
+
+    &::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    &:focus {
+      color: #fff;
+      border-color: $primary;
+      box-shadow: 0 0 0 .25rem rgba($primary, .12);
+      background-color: rgba(255,255,255,0.02);
+    }
+  }
+
+  .form-select option {
+    background-color: $dark;
+    color: #fff;
+  }
+
+  /* Range control tweak inside themed form */
+  input[type="range"].form-range {
+    accent-color: $primary;
+  }
+
+  /* small-screen tweak: slightly larger side padding on narrow devices */
+  @media (max-width: 480px) {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* center on larger screens */
+  @media (min-width: 960px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 /* Modal and backdrop styles */
 body.modal-open > *:not(.modal):not(.modal-backdrop) {
     filter: blur(5px);
 }
+
+/* Import Bootstrap after variables so the overrides apply */
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 .modal-backdrop {
     opacity: 0.5 !important;
