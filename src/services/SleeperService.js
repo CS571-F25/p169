@@ -17,3 +17,8 @@ export function getTrendingPlayers(type, lookback, limit) {
     return fetch(`https://api.sleeper.app/v1/players/nfl/trending/${type}?lookback_hours=${lookback}&limit=${limit}`)
         .then(response => response.json());
 }
+
+export function getAvatar(avatarId) {
+    return fetch(`https://sleepercdn.com/avatars/${avatarId}`)
+        .then(response => response.url);
+}
