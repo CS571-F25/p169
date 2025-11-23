@@ -1,5 +1,6 @@
-import { Form, Row, Col, Button, Container} from 'react-bootstrap'
-import { useState } from 'react';
+import { Form, Row, Col, Button, Dropdown} from 'react-bootstrap'
+import { useState, useEffect } from 'react';
+import Multiselect from './Multiselect';
 
 export default function TrendingSearch(props) {
 
@@ -49,7 +50,11 @@ export default function TrendingSearch(props) {
                             <option value='add'>Add</option>
                             <option value='drop'>Drop</option>
                         </Form.Select>
-                        </Col>
+                    </Col>
+                    <Col>
+                        <Form.Label htmlFor='positions'>Positions</Form.Label>
+                        <Multiselect id='positions' options={props.options} selected={props.positions} setSelected={props.setPositions}/>
+                    </Col>
                     <Col>
                         <Button
                             variant='light' 
