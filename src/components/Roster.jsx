@@ -6,9 +6,12 @@ import { Card } from "react-bootstrap";
 export default function Roster(props) {
 
     const [roster, setRoster] = useState([])
+    const [sortedRoster, setSortedRoster] = useState([])
     
     useEffect( () => {
+        const ros = props.rosters.find(roster => roster.owner_id === props.user_id)
         setRoster(props.rosters.find(roster => roster.owner_id === props.user_id))
+        setSortedRoster(ros.players.sort((a,b) => ros.starters.some(e => e === b) - ros.starters.some(e => e === a)))
     }, [props.rosters]);
 
     return <div>
@@ -17,7 +20,7 @@ export default function Roster(props) {
         </Card.Text>
         <ul>
             {
-            (roster && roster.players) ? roster.players.map( (playerId) => 
+            (roster && roster.players) ? sortedRoster.map( (playerId) => 
                 <li key={playerId}>{players[playerId].full_name} - {players[playerId].position}{roster.starters.some(e => e === playerId) ? ' - Starter' : ''}</li> 
             )
             :

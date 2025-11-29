@@ -10,6 +10,12 @@ export default function Multiselect(props) {
         }
     }
 
+    const handleKeyDown = (key, item) => {
+        if (key.key === '' || key.key === 'Enter') {
+            handleSelect(item);
+        }
+    }
+
     return <Dropdown autoClose="outside" className="w-100">
         <Dropdown.Toggle variant='dark' id='dropdown-multiselect' className='w-100'>
             {props.selected?.length > 0 ? props.selected.join(', ') : 'Select Items'}
@@ -19,9 +25,11 @@ export default function Multiselect(props) {
                 return <Dropdown.Item 
                     as="div"
                     role="button" 
-                    key={option} 
+                    key={option}
+                    tabIndex="0"
                     className="d-flex align-items-center"
                     onClick={() => handleSelect(option)}
+                    onKeyDown={(e) => handleKeyDown(e, option)}
                 >
                     <div className="ps-4" style={{ flex: '0 0 auto', minWidth: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Form.Check

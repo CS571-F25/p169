@@ -2,12 +2,14 @@ import { getLeagueMembers, getLeagueRosters } from "../services/SleeperService"
 import { useState, useEffect } from "react"
 import { Container, Row, Col } from "react-bootstrap";
 import MemberCard from "../components/MemberCard";
+import MemberSearch from "../components/MemberSearch";
 
 export default function Members(props) {
 
     const [leagueId, setLeagueId] = useState(sessionStorage.getItem('leagueId') || '');
     const [members, setMembers] = useState([])
     const [rosters, setRosters] = useState([])
+    const [memberSearch, setMemberSearch] = useState('');
 
     useEffect( () => {
         if (leagueId) {
@@ -54,8 +56,11 @@ export default function Members(props) {
                 <p>No members found. Please enter a valid League ID.</p>
             : 
                 <Container fluid>
+                    <MemberSearch members={memberSearch} setMembers={setMemberSearch} name='Member Name:'/>
                     <Row>
-                        {members.map( (member) => <Col key={member.user_id} xs={12} md={6} lg={4} xl={3} className="mb-3">
+                        {members
+                            .filter( (mem) => (mem.metadata.team_name)?.toLowerCase().includes(memberSearch.toLowerCase()) || (mem.display_name)?.toLowerCase().includes(memberSearch.toLowerCase()))
+                            .map( (member) => <Col key={member.user_id} xs={12} md={6} lg={4} xl={3} className="mb-3">
                             <MemberCard {...member} rosters={rosters}/>
                         </Col>)}
                     </Row>

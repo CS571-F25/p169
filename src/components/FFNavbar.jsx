@@ -5,7 +5,7 @@ export default function FFNavbar (props) {
     <Navbar bg='primary' variant='dark' className="mb-3">
         <Container fluid>
             <Navbar.Brand href="#/">
-                <img src="/p169/images/fflogo.png" width="50rem" height="50rem"/>
+                <img src="/p169/images/fflogo.png" alt="Image of a football over an icon saying 'Fantasy Foodball'" width="50rem" height="50rem"/>
             </Navbar.Brand>
             <Nav className='me-auto'>
                 <Nav.Link href="#/">League Members</Nav.Link>
