@@ -9,7 +9,6 @@ function App() {
 
   return (
       <HashRouter>
-        { sessionStorage.getItem('leagueId') != null ? '' : <InitialModal /> }
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route index element={<Members/>}></Route>

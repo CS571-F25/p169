@@ -1,19 +1,28 @@
-import { getMatchupsByWeek } from "../services/SleeperService";
+import { getMatchupsByWeek, getLeagueRosters, getLeagueMembers } from "../services/SleeperService";
 import { useState, useEffect } from "react";
 import MatchupCard from "../components/MatchupCard";
+import MatchupSearch from "../components/MatchupSearch";
 
 export default function Matchups(props) {
 
-    const [leagueId, setLeagueId] = useState(sessionStorage.getItem('leagueId') || '');
+    const [leagueId, setLeagueId] = useState(sessionStorage.getItem('leagueId'));
     const [data, setData] = useState([]);
     const [matchups, setMatchups] = useState([]);
+    const [week, setWeek] = useState(1);
+    const [rosters, setRosters] = useState([]);
+    const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        getMatchupsByWeek(leagueId, 11).then( data => {
-            setData(data);
-            console.log(data);
-        })
+        getLeagueRosters(leagueId).then(e => setRosters(e));
+        getLeagueMembers(leagueId).then(e => setMembers(e));
     }, [])
+
+    const handleSubmit = () => {
+        setMatchups([])
+        getMatchupsByWeek(leagueId, week).then( matches => {
+            setData(matches);
+        })
+    };
 
     useEffect( () => {
         let seen = [];
@@ -31,8 +40,9 @@ export default function Matchups(props) {
 
     return(
         <div>
+            <MatchupSearch week={week} setWeek={setWeek} handleSubmit={handleSubmit}/>
             {matchups ? 
-                matchups.map((match, index) => <MatchupCard key={index} player1={match[0]} player2={match[1]}/>)
+                matchups.map((match, index) => <MatchupCard key={index} members={members} rosters={rosters} player1={match[0]} player2={match[1]}/>)
             :
                 ''
             }

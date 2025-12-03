@@ -6,7 +6,7 @@ import MemberSearch from "../components/MemberSearch";
 
 export default function Members(props) {
 
-    const [leagueId, setLeagueId] = useState(sessionStorage.getItem('leagueId') || '');
+    const [leagueId, setLeagueId] = useState(sessionStorage.getItem('leagueId'));
     const [members, setMembers] = useState([])
     const [rosters, setRosters] = useState([])
     const [memberSearch, setMemberSearch] = useState('');
@@ -15,11 +15,9 @@ export default function Members(props) {
         if (leagueId) {
             getLeagueMembers(leagueId).then(data => {
                 setMembers(data);
-                console.log('Members loaded:', data);
             });
             getLeagueRosters(leagueId).then(data => {
                 setRosters(data);
-                console.log('Rosters loaded:', data);
             });
         }
     }, [leagueId]);
