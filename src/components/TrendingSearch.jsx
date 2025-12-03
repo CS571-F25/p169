@@ -1,43 +1,36 @@
 import { Form, Row, Col, Button, Dropdown} from 'react-bootstrap'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Multiselect from './Multiselect';
+import Slider from './Slider';
 
 export default function TrendingSearch(props) {
 
     const [trend, setTrend] = useState('add');
-    const [loopback, setLookback] = useState('24');
+    const [loopback, setLoopback] = useState('24');
     const [numPlayers, setNumPlayers] = useState('25');
 
     const handleTrendChange = (event) => {
         setTrend(event.target.value);
     }
 
-    const handleLoopbackChange = (event) => {
-        setLookback(event.target.value);
-    }
-
-    const handleNumPlayersChange = (event) => {
-        setNumPlayers(event.target.value);
-    }
-
     return (<Form className='themed-form'>
         <Row>
             <Col>
-                <Form.Label className='mt-3' htmlFor='loopback'>Loopback Hours: {loopback}</Form.Label>
-                <Form.Range 
-                    id='loopback'
+                <Slider
+                    altId='loopback'
                     min='12'
                     max='100'
+                    label='Loopback Hours: '
                     value={loopback}
-                    onChange={handleLoopbackChange}
+                    setValue={setLoopback}
                 />
-                <Form.Label htmlFor='numPlayers'>Number of Players: {numPlayers}</Form.Label>
-                <Form.Range 
-                    id='numPlayers'
+                <Slider
+                    altId='numPlayers'
                     min='10'
                     max='100'
+                    label='Number of Players: '
                     value={numPlayers}
-                    onChange={handleNumPlayersChange}
+                    setValue={setNumPlayers}
                 />
                 <Row>
                     <Col>
