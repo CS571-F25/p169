@@ -46,7 +46,7 @@ export default function InitialModal(props) {
     return(
         <Modal show={!props.id} backdrop="static" centered>
             <Modal.Header>
-                <Modal.Title>Add League ID</Modal.Title>
+                <Modal.Title>Select League</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {leagues != null ?
