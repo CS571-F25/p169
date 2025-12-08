@@ -22,3 +22,8 @@ export function getAvatar(avatarId) {
     return fetch(`https://sleepercdn.com/avatars/${avatarId}`)
         .then(response => response.url);
 }
+
+export function getLeagues(userId) {
+    return fetch(`https://api.sleeper.app/v1/user/${userId}/leagues/nfl/2025`)
+        .then(response => response.json());
+}
